@@ -15,9 +15,85 @@ let turnPlayer = 'p1';
 
 winningScoreElem.textContent = winScore;
 
+// all function will be here
+
+
+// player one button control
+function changeplaeyerOneBtn(){
+    p1Btn.setAttribute('disabled', 'disabled');
+    p2Btn.setAttribute('disabled', 'disabled');
+    p1Btn.style.backgroundColor = 'lightgreen';
+    p2Btn.style.backgroundColor = 'lightgreen';
+    p1Btn.style.cursor = 'no-drop';
+    p2Btn.style.cursor = 'no-drop';
+}
+
+function playerOneBtnRevers(){
+    p1Btn.style.backgroundColor = 'lightgreen';
+    p1Btn.style.cursor = 'no-drop';
+    p1Btn.setAttribute('disabled', 'disabled');
+
+
+    p2Btn.style.backgroundColor = 'rgb(18, 158, 72)';
+    p2Btn.style.cursor = 'pointer';
+    p2Btn.removeAttribute('disabled');
+}
+
+
+// player two button control
+function changePlayerTwoBtn(){
+    p1Btn.setAttribute('disabled', 'disabled');
+    p2Btn.setAttribute('disabled', 'disabled');
+    p1Btn.style.backgroundColor = 'lightgreen';
+    p2Btn.style.backgroundColor = 'lightgreen';
+    p1Btn.style.cursor = 'no-drop';
+    p2Btn.style.cursor = 'no-drop';
+}
+
+
+
+
+
+
+function playerTwoBtnRevers(){
+    p2Btn.style.backgroundColor = 'lightgreen';
+    p2Btn.style.cursor = 'no-drop';
+    p2Btn.setAttribute('disabled', 'disabled');
+
+
+    p1Btn.style.backgroundColor = 'rgb(18, 158, 72)';
+    p1Btn.style.cursor = 'pointer';
+    p1Btn.removeAttribute('disabled');
+}
+
+// reset elements function
+function resetElements(){
+    p1Score = 0;
+    p2Score = 0;
+    winScore = 5;
+    gameOver = false;
+    turnPlayer = 'p1';
+
+    p1Btn.style.backgroundColor = 'rgb(18, 158, 72)';
+    p1Btn.style.cursor = 'pointer';
+    p1Btn.removeAttribute('disabled');
+
+    p2Btn.style.backgroundColor = 'rgb(18, 158, 72)';
+    p2Btn.style.cursor = 'pointer';
+    p2Btn.removeAttribute('disabled');
+
+    p1ScoreElem.textContent = p1Score;
+    p2ScoreElem.textContent = p2Score;
+
+    winningScoreElem.textContent = winScore;
+}
+
 
 form.addEventListener('submit', function(e){
     e.preventDefault();
+
+    resetElements();
+
 
     let plInp = parseInt(playerInp.value);
 
@@ -44,14 +120,7 @@ p1Btn.addEventListener('click', function(){
 
     turnPlayer = 'p2';
 
-    p1Btn.style.backgroundColor = 'lightgreen';
-    p1Btn.style.cursor = 'no-drop';
-    p1Btn.setAttribute('disabled', 'disabled');
-
-
-    p2Btn.style.backgroundColor = 'rgb(18, 158, 72)';
-    p2Btn.style.cursor = 'pointer';
-    p2Btn.removeAttribute('disabled');
+    playerOneBtnRevers();
 
 
 
@@ -59,17 +128,14 @@ p1Btn.addEventListener('click', function(){
     if(p1Score === winScore){
         gameOver = true;
 
-        p1Btn.setAttribute('disabled', 'disabled');
-        p2Btn.setAttribute('disabled', 'disabled');
-        p1Btn.style.backgroundColor = 'lightgreen';
-        p2Btn.style.backgroundColor = 'lightgreen';
-        p1Btn.style.cursor = 'no-drop';
-        p2Btn.style.cursor = 'no-drop';
+        changeplaeyerOneBtn();
 
         alert('Player one win');
     }
 
 })
+
+
 
 p2Btn.addEventListener('click', function(){
     if(turnPlayer === 'p2' && !gameOver && p2Score < winScore){
@@ -79,27 +145,15 @@ p2Btn.addEventListener('click', function(){
 
     p2ScoreElem.textContent = p2Score;
 
-    p2Btn.style.backgroundColor = 'lightgreen';
-    p2Btn.style.cursor = 'no-drop';
-    p2Btn.setAttribute('disabled', 'disabled');
-
-
-    p1Btn.style.backgroundColor = 'rgb(18, 158, 72)';
-    p1Btn.style.cursor = 'pointer';
-    p1Btn.removeAttribute('disabled');
-
+   
+    playerTwoBtnRevers();
     
 
     }
     if(p2Score === winScore){
         gameOver = true;
 
-        p1Btn.setAttribute('disabled', 'disabled');
-        p2Btn.setAttribute('disabled', 'disabled');
-        p1Btn.style.backgroundColor = 'lightgreen';
-        p2Btn.style.backgroundColor = 'lightgreen';
-        p1Btn.style.cursor = 'no-drop';
-        p2Btn.style.cursor = 'no-drop';
+        changePlayerTwoBtn();
 
         alert('Player Two win');
 
@@ -107,24 +161,8 @@ p2Btn.addEventListener('click', function(){
 
 })
 
+
 resetBtn.addEventListener('click', function(){
-    p1Score = 0;
-    p2Score = 0;
-    winScore = 5;
-    gameOver = false;
-    turnPlayer = 'p1';
-
-    p1Btn.style.backgroundColor = 'rgb(18, 158, 72)';
-    p1Btn.style.cursor = 'pointer';
-    p1Btn.removeAttribute('disabled');
-
-    p2Btn.style.backgroundColor = 'rgb(18, 158, 72)';
-    p2Btn.style.cursor = 'pointer';
-    p2Btn.removeAttribute('disabled');
-
-    p1ScoreElem.textContent = p1Score;
-    p2ScoreElem.textContent = p2Score;
-
-    winningScoreElem.textContent = winScore;
+    resetElements();
 
 })
