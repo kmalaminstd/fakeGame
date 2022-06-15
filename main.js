@@ -110,6 +110,8 @@ form.addEventListener('submit', function(e){
 
     playerInp.value = '';
 
+    resetElements();
+
 })
 
 p1Btn.addEventListener('click', function(){
